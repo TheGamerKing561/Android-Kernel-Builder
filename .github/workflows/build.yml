@@ -10,7 +10,7 @@ on:
 jobs:
   Set-repos:
     name: "🐂 Parse repos.json"
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     outputs:
       repos: ${{ steps.generate-matrix.outputs.repos }}
     steps:
@@ -52,8 +52,8 @@ jobs:
       - name: "⭐ Install prerequisites"
         run: |
           sudo apt update
-          sudo add-apt-repository universe
-          sudo apt -y install python2
+          # sudo add-apt-repository universe
+          # sudo apt -y install python2
           sudo apt install -y build-essential bc curl git zip ftp gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi libssl-dev lftp zstd wget libfl-dev python3 libarchive-tools
 
       - name: "🌟 Clone kernel source => (${{ env.kernelRepo }})"
