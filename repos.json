@@ -3,7 +3,7 @@
       "name": "daisy",
       "repo": "https://github.com/TheGamerKing561/android_kernel_xiaomi_msm8953",
       "branch": "lineage-22.2",
-      "device": "msm8953-perf"
+      "device": "daisy-perf"
     },
     "withKernelSU": false,
     "toolchains": [
