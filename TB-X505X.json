@@ -1,4 +1,5 @@
-[  {
+[
+  {
     "kernelSource": {
       "name": "TB-X505X",
       "repo": "https://github.com/Lenovo-TB-X505X/android_kernel_lenovo_TB-X505X",
@@ -8,24 +9,24 @@
     "withKernelSU": false,
     "toolchains": [
       {
-        "repo": "https://android.googlesource.com/platform/prebuilts/gas/linux-x86",
+        "repo": "https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9",
         "branch": "master",
-        "name": "gas"
+        "name": "gcc64"
       },
       {
-        "repo": "https://gitlab.com/ThankYouMario/android_prebuilts_clang-standalone/",
-        "branch": "11",
-        "name": "clang"
+        "repo": "https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9",
+        "branch": "master",
+        "name": "gcc32"
       }
     ],
     "params": {
       "ARCH": "arm64",
-      "CROSS_COMPILE": "aarch64-linux-gnu-",
-      "CROSS_COMPILE_ARM32": "arm-linux-gnueabi-",
-      "CROSS_COMPILE_COMPAT": "arm-linux-gnueabi-",
-      "CLANG_TRIPLE": "aarch64-linux-gnu-",
+      "CROSS_COMPILE": "./gcc64/bin/aarch64-linux-android-",
+      "CROSS_COMPILE_ARM32": "./gcc32/bin/arm-linux-androideabi-",
+      "CROSS_COMPILE_COMPAT": "./gcc32/bin/arm-linux-androideabi-",
+      "CLANG_TRIPLE": "",
       "AR": "",
-      "CC": "clang"
+      "CC": ""
     }
   }
 ]
