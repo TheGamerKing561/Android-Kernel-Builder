@@ -65,12 +65,21 @@ jobs:
       - name: "⭐ Install prerequisites"
         run: |
           sudo apt update
-          sudo apt install -y build-essential bc curl git zip ftp gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi libssl-dev lftp zstd wget libfl-dev python3 libarchive-tools
-          sudo add-apt-repository ppa:deadsnakes/ppa -y
-          sudo apt-get update
-          sudo apt-get install python2.7 -y
-          sudo ln -sf /usr/bin/python2.7 /usr/bin/python2
-          python --version
+          sudo apt install -y build-essential bc curl git zip ftp gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi libssl-dev lftp zstd wget libfl-dev python3 libarchive-tools checkinstall libncurses-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev libffi-dev libreadline-dev libdb-dev
+
+          # Build Python 2.7 from source
+          cd /tmp
+          wget https://www.python.org/ftp/python/2.7.18/Python-2.7.18.tgz
+          tar xzf Python-2.7.18.tgz
+          cd Python-2.7.18
+          
+          ./configure --prefix=/usr/local/python2.7
+          make -j$(nproc)
+          sudo make install
+          
+          # Symlink to python2
+          sudo ln -sf /usr/local/python2.7/bin/python2.7 /usr/bin/python2
+          python2 --version
 
       - name: "🌟 Clone kernel source => (${{ env.kernelRepo }})"
         working-directory: ./${{ env.kernelDir }}
