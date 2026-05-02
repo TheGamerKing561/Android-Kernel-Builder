@@ -69,7 +69,6 @@ jobs:
           sudo add-apt-repository ppa:deadsnakes/ppa -y
           sudo apt-get update
           sudo apt-get install python2.7 -y
-          sudo ln -sf /usr/bin/python2.7 /usr/bin/python
           sudo ln -sf /usr/bin/python2.7 /usr/bin/python2
           python --version
 
