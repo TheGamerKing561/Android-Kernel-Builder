@@ -66,6 +66,12 @@ jobs:
         run: |
           sudo apt update
           sudo apt install -y build-essential bc curl git zip ftp gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi libssl-dev lftp zstd wget libfl-dev python3 libarchive-tools
+          sudo add-apt-repository ppa:deadsnakes/ppa -y
+          sudo apt-get update
+          sudo apt-get install python2.7 -y
+          sudo ln -sf /usr/bin/python2.7 /usr/bin/python
+          sudo ln -sf /usr/bin/python2.7 /usr/bin/python2
+          python --version
 
       - name: "🌟 Clone kernel source => (${{ env.kernelRepo }})"
         working-directory: ./${{ env.kernelDir }}
