@@ -14,6 +14,11 @@ on:
          description: "Start terminal before build"
          type: boolean
          default: false
+      set_custom_build_identity:
+        description: Set custom BUILD_USERNAME and BUILD_HOSTNAME
+        required: false
+        default: false
+        type: boolean
 
 jobs:
   Set-repos:
@@ -185,6 +190,11 @@ jobs:
           args: ${{ steps.generate-args.outputs.args }}
         run: |
           echo "PATH Variable: $PATH"
+          if [[ "${{ github.actor }}" == "TheGamerKing561" && "${{ inputs.set_custom_build_identity }}" == "true" ]]; then
+            export BUILD_USERNAME="thegamerking"
+            export BUILD_HOSTNAME="github-runner"
+            echo "Using custom build identity."
+          fi
           make ${args}
 
       - name: Install SSH server
