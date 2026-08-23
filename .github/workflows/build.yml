@@ -10,6 +10,11 @@ on:
         description: "Path to config JSON file"
         required: true
         default: "repos.json"
+      enable_KernelSU:
+        description: "Enable KernelSU"
+        required: false
+        default: false
+        type: boolean
       enable_terminal:
          description: "Start terminal before build"
          type: boolean
@@ -66,7 +71,7 @@ jobs:
 
       DEFCONFIG_NAME: ${{ matrix.repos.kernelSource.device }}_defconfig
 
-      withKernelSU: ${{ matrix.repos.withKernelSU }}
+      withKernelSU: ${{ matrix.repos.withKernelSU || inputs.enable_KernelSU }}
     steps:
       - name: "✨ Create working dir"
         run: mkdir -p $kernelDir
